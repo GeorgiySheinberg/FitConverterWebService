@@ -44,26 +44,31 @@ def convert_to_csv(file_path: str, file_name: str, headers_list: list):
     data_for_record = []
     headers = []
     [headers.extend(all_headers.get(header)) for header in headers_list]
-
+    string_counter = 0
     for record_data in fit_data.get_messages(['record', 'lap', 'event']):
 
         line_for_record = {}
 
         if record_data.name == 'record':
+            string_counter += 1
             for key in record_data.get_values().keys():
                 if key in headers:
                     line_for_record.update({key: record_data.get_values().get(key)})
 
-        if record_data.name == 'lap':
+        elif record_data.name == 'lap':
             for key in record_data.get_values().keys():
                 if key in headers:
-                    line_for_record.update({key: record_data.get_values().get(key)})
+                    data_for_record[string_counter-1].update({key: record_data.get_values().get(key)})
 
-        if record_data.name == 'event':
+        elif record_data.name == 'event':
             for key in record_data.get_values().keys():
                 if key in headers:
-                    line_for_record.update({key: record_data.get_values().get(key)})
-        data_for_record.append(line_for_record)
+                    if string_counter == 0:
+                        continue
+                    else:
+                        data_for_record[string_counter-1].update({key: record_data.get_values().get(key)})
+        if data_for_record != {}:
+            data_for_record.append(line_for_record)
 
     with open(f'media/converted_files/{file_name[:-4]}.csv', 'w', newline='') as f:
         fieldnames = headers
@@ -73,7 +78,8 @@ def convert_to_csv(file_path: str, file_name: str, headers_list: list):
             line_ = {}
             for key, value in line.items():
                 line_.update({key: str(value).replace('None', '')})
-            writer.writerow(line_)
+            if line_ != {}:
+                writer.writerow(line_)
 
     file = f'converted_files/{file_name[:-4]}.csv'
     return file
