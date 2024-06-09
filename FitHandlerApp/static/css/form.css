@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.center{
+  padding: 50px;
+  position: fixed; top: 50%; left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.button-style {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #f2f2f2;
+  border: 1px solid #000; /* В ожидании набирающего популярность темного режима, рамка черного цвета */
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+}
+
+.button-style:hover, .button-style:focus {
+  background: #e2e2f2; /* Эффект при наведении — дополнительное оформление */
+}

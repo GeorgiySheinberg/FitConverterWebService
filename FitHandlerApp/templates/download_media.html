@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка</title>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+файл {{file.file.name}} доступен к загрузке<br>
+<form class="button-style" action="{{file.file.url}}" method="get">
+   <button type="submit">Загрузить</button>
+</form><br>
+<form class="button-style" action="" method="get">
+   <button type="submit">Вернуться</button>
+    </form>
+</body>
+</html>

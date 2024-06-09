@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+	<head>
+    	<meta charset="UTF-8">
+    	<title>Конвертация файлов FIT</title>
+        <link rel="stylesheet" href="{% static 'css/form.css' %}">
+	</head>
+    <body class="center">
+        <form action="/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="formFileLg" class="form-label">Выберете fit файл для конвертации</label>
+                <input name='file' class="form-control form-control-lg" id="formFileLg" type="file">
+            </div>
+            <br>
+            <div>
+                <label for="format">Выберите формат файла:</label>
+                    <select id="format" name="format">
+                        <option value="csv">CSV</option>
+                        <option value="xlsx">XLSX</option>
+                    </select>
+            </div>
+
+                <br>
+            <h5 >Выберете необходимые заголовки:</h5>
+            <div>
+                <label><input type="checkbox" name="fit_messages" value="time_and_data">Дата и время</label><br>
+                <label><input type="checkbox" name="fit_messages" value="navigation">GPS данные</label><br>
+                <label><input type="checkbox" name="fit_messages" value="temperature">Температура</label><br>
+                <label><input type="checkbox" name="fit_messages" value="fitness_metrics">Состояние</label><br>
+                <label><input type="checkbox" name="fit_messages" value="cadence">Ритм</label><br>
+                <label><input type="checkbox" name="fit_messages" value="height_and_slope">Высота и уклон</label><br>
+                <label><input type="checkbox" name="fit_messages" value="gear">Передачи(для велосипеда)</label><br>
+                <label><input type="checkbox" name="fit_messages" value="tec_data">Технические данные</label>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Конвертировать</button>
+                <button type="reset" class="btn btn-primary">Сбросить</button>
+            </div>
+        </form>
+    </body>
+</html>
