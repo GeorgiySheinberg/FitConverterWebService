@@ -75,7 +75,11 @@ def convert_to_csv(file_path: str, file_name: str, headers_list: list):
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for line in data_for_record:
+            timestamp = ''
             line_ = {}
+            if timestamp == line_.get('timestamp'):
+                continue
+            timestamp = line_.get('timestamp')
             for key, value in line.items():
                 line_.update({key: str(value).replace('None', '')})
             if line_ != {}:
