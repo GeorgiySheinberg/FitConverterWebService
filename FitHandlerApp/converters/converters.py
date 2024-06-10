@@ -93,13 +93,11 @@ def convert_to_excel(file_path: str, file_name: str, ex_headers_list: list):
     fitfile = file_path
     fit_data = fitparse.FitFile(fitfile, data_processor=fitparse.StandardUnitsDataProcessor())
     headers = []
-    print(ex_headers_list)
+
     for ex_header in ex_headers_list:
 
         a = all_headers.get(ex_header)
         headers.extend(a)
-    # [headers.extend(all_headers.get(header)) for header in headers_list]
-    print(headers)
 
     data_for_record = {key: [] for key in headers}
 
@@ -112,7 +110,7 @@ def convert_to_excel(file_path: str, file_name: str, ex_headers_list: list):
     cwd = os.getcwd().replace(r'FitHandlerApp\converters', '')
     os.path.join(cwd, f'{file}.xlsx')
     df.to_excel(os.path.join(cwd, 'media', f'{file}'), index=False)
-    return file
+    return
 
 
 

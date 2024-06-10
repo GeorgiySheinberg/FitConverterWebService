@@ -11,16 +11,95 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.button-style {
-  display: inline-block;
-  padding: 10px 15px;
-  background: #f2f2f2;
-  border: 1px solid #000; /* В ожидании набирающего популярность темного режима, рамка черного цвета */
-  color: #333;
-  text-decoration: none;
-  text-align: center;
+.submit {
+	cursor: pointer;
+	border: 1px solid #cecece;
+	background: #f6f6f6;
+	box-shadow: inset 0px 20px 20px #ffffff;
+	border-radius: 8px;
+	padding: 8px 14px;
+	width: 120px;
+}
+.submit:hover {
+	box-shadow: inset 0px -20px 20px #ffffff;
+}
+.submit:active {
+	margin-top: 1px;
+	margin-bottom: -1px;
+	zoom: 1;
+}
+.submit:focus
+{
+	outline:none;
 }
 
-.button-style:hover, .button-style:focus {
-  background: #e2e2f2; /* Эффект при наведении — дополнительное оформление */
+body {
+  margin:30px;
+  font-size:18px;
 }
+
+/* container */
+label {
+  position: relative; /* to contain absolute elements */
+  padding-left:30px; /* free space for custom checkbox */
+  cursor: pointer;
+}
+/* hide default checkbox  */
+label input[type=checkbox] {
+  position: absolute; /* prevent taking any space */
+  /* cross-browser hidingg */
+  opactiy: 0;
+  width:0;
+  height:0;
+}
+/* custom checkbox */
+label span {
+  position: absolute;
+  /* position to the free space in <label> */
+  top:0;
+  left:0;
+  width:20px;
+  height:20px;
+  background-color: #ddd;
+  transition: .3s background-color; /* slight transition */
+}
+/* the check icon */
+label span:after {
+  content: "";
+  position: absolute;
+  display: none;
+
+  /* check icon */
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+label:hover span {
+  background-color: #ccc;
+}
+
+/**** Here's the trick ***/
+label input:checked ~ span {
+  background-color: #2eaadc;
+}
+label input:checked ~ span:after {
+  display:block;
+}
+
+select {
+  width: 50%;
+  padding:10px;
+  border-radius:10px;
+}
+.form{
+width:500px
+padding:32px
+border-radius: 10px;
+box-shadow:0 4px 16px #ccc;
+opacity:1;
+}
+
