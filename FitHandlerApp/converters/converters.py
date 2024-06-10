@@ -110,7 +110,7 @@ def convert_to_excel(file_path: str, file_name: str, ex_headers_list: list):
     cwd = os.getcwd().replace(r'FitHandlerApp\converters', '')
     os.path.join(cwd, f'{file}.xlsx')
     df.to_excel(os.path.join(cwd, 'media', f'{file}'), index=False)
-    return
+    return file
 
 
 
